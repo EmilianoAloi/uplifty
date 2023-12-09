@@ -21,12 +21,8 @@ const AddEventModal = () => {
 
 
     const [open, setOpen] = useState(true);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
 
-    const preventCloseOnBackdropClick = (event) => {
-        event.stopPropagation();
-    };
+
 
     return (
 
