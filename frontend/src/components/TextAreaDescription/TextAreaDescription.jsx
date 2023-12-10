@@ -54,7 +54,7 @@ const TextAreaDescription = () => {
       `,
     );
     return (
-      <Textarea aria-label="minimum height" minRows={4} placeholder="Descripción del Evento" />
+      <Textarea aria-label="minimum height" minRows={6} placeholder="Descripción del Evento" />
       );
     
 }

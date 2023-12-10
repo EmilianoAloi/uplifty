@@ -11,8 +11,8 @@ function App() {
 
   const theme = createTheme({
     palette: {
-      primary: {
-        main: '#01DD9D', // Cambia este valor al color que desees
+      secondary: {
+        main: '#01DD9D', 
       },
     },
   });

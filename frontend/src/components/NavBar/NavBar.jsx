@@ -27,7 +27,7 @@ const NavBar = () => {
             }}>
 
 
-            <Fab color="primary"
+            <Fab color="secondary"
                 variant="extended"
                 component={NavLink} to={"/addevent"}
                 aria-label="add"
@@ -37,7 +37,7 @@ const NavBar = () => {
             </Fab>
 
 
-            <Fab color="primary" 
+            <Fab color="secondary" 
             variant="extended"
              aria-label="add"
              component={NavLink} to={"/showevents"}
