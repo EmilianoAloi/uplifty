@@ -8,6 +8,11 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 import { getAllEvents } from '../../api/eventos.api';
+import EventCard from '../EventCard/EventCard';
+
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
 const AddEventModal = () => {
 
@@ -17,8 +22,8 @@ const AddEventModal = () => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: "80%",
-        height: '80%',
+        width: "95%",
+        height: '90%',
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
@@ -38,12 +43,17 @@ const AddEventModal = () => {
     }, []);
 
 
+    const Item = styled(Paper)(({ theme }) => ({
+        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+    }));
 
 
 
     return (
-
-
 
         <>
 
@@ -73,22 +83,35 @@ const AddEventModal = () => {
 
 
 
+                    <Box sx={{
+                        width: '100%',
+                        maxHeight: 'calc(95% - 1px)', 
+                        overflowY: 'auto',
+                    }}>
+                        <Grid container rowSpacing={1} columnSpacing={3}>
+                            {events.map((evento) => (
+                                <Grid item key={evento.id} xs={12} md={6}>
+                                    <EventCard evento={evento} />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Box>
+
+
+
+
+
+                    {/* 
                     <Stack>
 
-
-                        <Stack>
-                            {events.map(e => (
-                                <div key={e.id}>
-                                    <h1>{e.titulo}</h1>
-                                    <p>{e.descripcion}</p>
-                                </div>
-
+                        <Stack sx={{ flexDirection: "column", justifyContent: 'center', maxWidth: "100%", gap: 1 }}>
+                            {events.map(evento => (
+                                <EventCard key={evento.id} evento={evento} />
                             ))}
-
                         </Stack>
 
 
-                    </Stack>
+                    </Stack> */}
 
 
 
