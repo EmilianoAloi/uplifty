@@ -13,14 +13,7 @@ import { Stack } from '@mui/material';
 
 const EventCard = ({ evento }) => {
 
-    const bull = (
-        <Box
-            component="span"
-            sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-        >
-            •
-        </Box>
-    );
+
 
     return (
         <>

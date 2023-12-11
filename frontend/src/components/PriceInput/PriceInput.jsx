@@ -5,18 +5,19 @@ import FormControl from '@mui/material/FormControl';
 import { Typography } from '@mui/material';
 
 
-const PriceInput = () => {
+const PriceInput = ({ handleInputChange }) => {
 
 
 
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
             <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-            <Typography variant='h6'>Importe</Typography>
+                <Typography variant='h6'>Importe</Typography>
 
                 <Input
-                    id="standard-adornment-amount"
                     startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                    onChange={handleInputChange}
+                    name="precio"
                 />
             </FormControl>
         </Box>

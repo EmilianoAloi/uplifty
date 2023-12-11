@@ -27,7 +27,27 @@ const AddEventModal = () => {
 
     const [open, setOpen] = useState(true);
 
+    const [formValues, setFormValues] = useState({
+        titulo: '',
+        descripcion: '',
+        precio: '',
+        fecha: '',
+        ubicacion: '',
+    });
 
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            [name]: value,
+        }));
+    };
+
+    const handleFormSubmit = () => {
+        // Aquí puedes enviar los valores del formulario al servidor o realizar acciones adicionales
+        console.log('Formulario enviado:', formValues);
+
+    };
 
     return (
 
@@ -70,13 +90,16 @@ const AddEventModal = () => {
                         <Stack sx={{ flexDirection: "column", width: "50%" }}>
                             <Stack sx={{ marginTop: "2rem" }}>
                                 <Typography variant='h6'>Titulo del Evento</Typography>
-                                <TextField label="Ej: Evento Tech" variant="standard" />
+                                <TextField label="Ej: Evento Tech"
+                                    variant="standard"
+                                    name="titulo"
+                                    onChange={handleInputChange} />
                             </Stack>
 
 
                             <Stack sx={{ marginTop: "2rem" }}>
                                 <Typography variant='h6'>Descripción</Typography>
-                                <TextAreaDescription />
+                                <TextAreaDescription handleInputChange={handleInputChange} />
                             </Stack>
 
                         </Stack>
@@ -86,30 +109,37 @@ const AddEventModal = () => {
 
                             <Stack sx={{ marginBottom: "2rem" }}>
                                 <Typography variant='h6'>Ubicación del Evento</Typography>
-                                <TextField label="Ej: Centro Cultural Konex" variant="standard" />
+                                <TextField label="Ej: Centro Cultural Konex"
+                                    variant="standard"
+                                    handleInputChange={handleInputChange}
+                                    name="ubicacion"
+                                />
                             </Stack>
 
                             <Stack>
                                 <Typography variant='h6'>Fecha del evento</Typography>
-                                <DateInput />
+                                <DateInput name="fecha" handleInputChange={handleInputChange} />
                             </Stack>
 
-                            <PriceInput />
+                            <PriceInput handleInputChange={handleInputChange} />
 
                         </Stack>
 
                     </Stack>
 
                     <Stack sx={{ width: "20rem", margin: "0 auto", marginTop: "3rem" }}>
-                        <Fab variant='contained' color='success'
+                        <Fab
+                            variant='contained'
+                            color='success'
+                            onClick={handleFormSubmit}
                             sx={{
                                 width: "100%",
                                 fontSize: "1.4rem",
                                 fontWeight: "600",
                                 color: "white",
                                 borderRadius: "1rem"
-
                             }}
+
                         >CREAR EVENTO</Fab>
                     </Stack>
                 </Box>
