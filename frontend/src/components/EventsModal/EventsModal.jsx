@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
 
 
-import { getAllEvents } from '../../api/eventos.api';
+import { getAllEvents } from '../../api/events.api';
 import EventCard from '../EventCard/EventCard';
 
 import { styled } from '@mui/material/styles';

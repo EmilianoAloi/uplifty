@@ -31,7 +31,7 @@ const NavBar = () => {
                 variant="extended"
                 component={NavLink} to={"/addevent"}
                 aria-label="add"
-                onClick={() => { console.log("hjhuh") }} >
+                 >
                 <AddIcon sx={{ mr: 1 }} />
                 Agregar Evento
             </Fab>

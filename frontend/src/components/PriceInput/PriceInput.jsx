@@ -11,8 +11,8 @@ const PriceInput = ({ handleInputChange }) => {
 
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-            <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-                <Typography variant='h6'>Importe</Typography>
+            <FormControl fullWidth sx={{ mt:3 }} variant="standard">
+                <Typography variant='h5'>Importe</Typography>
 
                 <Input
                     startAdornment={<InputAdornment position="start">$</InputAdornment>}

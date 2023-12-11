@@ -5,10 +5,11 @@ import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Stack, Button, Fab } from '@mui/material';
-import TextAreaDescription from '../TextAreaDescription/TextAreaDescription';
 import CloseIcon from '@mui/icons-material/Close';
 import { DateInput } from '../DateInput/DateInput';
 import PriceInput from '../PriceInput/PriceInput';
+import { addEvent } from '../../api/events.api';
+
 
 const AddEventModal = () => {
     const style = {
@@ -43,10 +44,20 @@ const AddEventModal = () => {
         }));
     };
 
-    const handleFormSubmit = () => {
-        // Aquí puedes enviar los valores del formulario al servidor o realizar acciones adicionales
-        console.log('Formulario enviado:', formValues);
+    // const handleFormSubmit =  () => {
+    //     console.log('Formulario enviado:', formValues);
+    // };
 
+
+    const handleFormSubmit = async () => {
+        try {
+            console.log('Formulario enviado:', formValues);
+            await addEvent(formValues);
+            
+            setOpen(false);
+        } catch (error) {
+            console.error('Error al enviar el formulario:', error);
+        }
     };
 
     return (
@@ -90,7 +101,8 @@ const AddEventModal = () => {
                         <Stack sx={{ flexDirection: "column", width: "50%" }}>
                             <Stack sx={{ marginTop: "2rem" }}>
                                 <Typography variant='h6'>Titulo del Evento</Typography>
-                                <TextField label="Ej: Evento Tech"
+                                <TextField
+                                    label="Ej: Evento Tech"
                                     variant="standard"
                                     name="titulo"
                                     onChange={handleInputChange} />
@@ -98,8 +110,15 @@ const AddEventModal = () => {
 
 
                             <Stack sx={{ marginTop: "2rem" }}>
-                                <Typography variant='h6'>Descripción</Typography>
-                                <TextAreaDescription handleInputChange={handleInputChange} />
+                                <Typography variant='h6' sx={{ mb: "1rem" }}>Descripción</Typography>
+                                <TextField label="Descripción del evento"
+                                    variant="filled"
+                                    name="descripcion"
+                                    multiline
+                                    rows={5}
+                                    onChange={handleInputChange}
+                                />
+
                             </Stack>
 
                         </Stack>
@@ -111,8 +130,8 @@ const AddEventModal = () => {
                                 <Typography variant='h6'>Ubicación del Evento</Typography>
                                 <TextField label="Ej: Centro Cultural Konex"
                                     variant="standard"
-                                    handleInputChange={handleInputChange}
                                     name="ubicacion"
+                                    onChange={handleInputChange}
                                 />
                             </Stack>
 
@@ -128,10 +147,7 @@ const AddEventModal = () => {
                     </Stack>
 
                     <Stack sx={{ width: "20rem", margin: "0 auto", marginTop: "3rem" }}>
-                        <Fab
-                            variant='contained'
-                            color='success'
-                            onClick={handleFormSubmit}
+                        <Fab variant='contained' color='success' onClick={handleFormSubmit}
                             sx={{
                                 width: "100%",
                                 fontSize: "1.4rem",
@@ -139,7 +155,6 @@ const AddEventModal = () => {
                                 color: "white",
                                 borderRadius: "1rem"
                             }}
-
                         >CREAR EVENTO</Fab>
                     </Stack>
                 </Box>
