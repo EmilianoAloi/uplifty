@@ -1,12 +1,19 @@
 import { Fab } from '@mui/material';
+import { delEvent } from '../../api/events.api';
 
+const DeleteButton = ({ params, setOpen }) => {
 
-const DeleteButton = () => {
+  const handleClick = () => {
+    delEvent(params.id)
+    setOpen(false);
+
+  }
   return (
 
     <>
 
-      <Fab variant='contained' color='error' 
+      <Fab variant='contained' color='error'
+        onClick={handleClick}
         sx={{
           width: "100%",
           fontSize: "1.2rem",

@@ -13,3 +13,7 @@ export const addEvent = (formValues) => {
    return eventsApi.post("/", formValues);
 };
 
+export const delEvent = (id) => {
+   // return console.log("evento eliminado")
+   return eventsApi.delete(`/${id}`);
+}

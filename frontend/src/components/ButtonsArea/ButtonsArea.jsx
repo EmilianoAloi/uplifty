@@ -6,7 +6,7 @@ import ModifyButton from "../ModifyButton/ModifyButton"
 
 
 
-const ButtonsArea = ({ handleFormSubmit }) => {
+const ButtonsArea = ({ handleFormSubmit, setOpen }) => {
 
     const params = useParams()
 
@@ -23,21 +23,13 @@ const ButtonsArea = ({ handleFormSubmit }) => {
             {params.id ? (
                 <>
                     <ModifyButton />
-                    <DeleteButton />
+                    <DeleteButton params={params} setOpen={setOpen}/>
                 </>
             ) : (
 
                 <AddButton handleFormSubmit={handleFormSubmit} />)}
 
 
-            {/* {params.id ? (
-                <Typography variant="h4" component="h2" >
-                    Modificar evento
-                </Typography>
-            ) :
-                (<Typography variant="h4" component="h2" >
-                    Crear evento
-                </Typography>)} */}
 
         </Stack>
 

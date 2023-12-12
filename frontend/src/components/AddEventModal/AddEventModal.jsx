@@ -52,7 +52,6 @@ const AddEventModal = () => {
         try {
             console.log('Formulario enviado:', formValues);
             await addEvent(formValues);
-
             setOpen(false);
         } catch (error) {
             console.error('Error al enviar el formulario:', error);
@@ -150,7 +149,7 @@ const AddEventModal = () => {
 
                     </Stack>
 
-                    <ButtonsArea handleFormSubmit={handleFormSubmit} />
+                    <ButtonsArea handleFormSubmit={handleFormSubmit} setOpen={setOpen}  />
 
                 </Box>
 

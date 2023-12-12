@@ -3,7 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Stack, Box } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './EventCard.css';
 
 
@@ -16,7 +16,7 @@ const EventCard = ({ evento }) => {
 
     return (
         <>
-            <Box component={Link} to={`/event/${evento.id}`} >
+            <Box component={NavLink} to={`/event/${evento.id}`} >
                 <Card className='card' sx={{ width: "100%", backgroundColor: "#D9FFF8", minHeight: "10rem", maxHeight: "10rem", color: "black" }} >
                     <CardContent  >
                         <Stack sx={{ flexDirection: "row", gap: 10, alignItems: "center", color: "black" }} >
