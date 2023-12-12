@@ -5,7 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import { Typography } from '@mui/material';
 
 
-const PriceInput = ({ handleInputChange }) => {
+const PriceInput = ({ handleInputChange, formValues }) => {
 
 
 
@@ -18,6 +18,7 @@ const PriceInput = ({ handleInputChange }) => {
                     startAdornment={<InputAdornment position="start">$</InputAdornment>}
                     onChange={handleInputChange}
                     name="precio"
+                    value={formValues.precio}
                 />
             </FormControl>
         </Box>

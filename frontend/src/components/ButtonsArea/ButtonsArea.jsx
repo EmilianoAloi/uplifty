@@ -6,7 +6,7 @@ import ModifyButton from "../ModifyButton/ModifyButton"
 
 
 
-const ButtonsArea = ({ handleFormSubmit, setOpen }) => {
+const ButtonsArea = ({ handleFormSubmit, setOpen, formValues }) => {
 
     const params = useParams()
 
@@ -22,7 +22,7 @@ const ButtonsArea = ({ handleFormSubmit, setOpen }) => {
 
             {params.id ? (
                 <>
-                    <ModifyButton />
+                    <ModifyButton params={params} setOpen={setOpen} formValues={formValues}/>
                     <DeleteButton params={params} setOpen={setOpen}/>
                 </>
             ) : (

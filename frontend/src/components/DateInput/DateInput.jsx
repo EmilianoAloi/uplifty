@@ -1,8 +1,9 @@
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import dayjs from 'dayjs';
 
-export const DateInput = ({ handleInputChange }) => {
+export const DateInput = ({ handleInputChange, formValues }) => {
 
 
     const handleChange = (date) => {
@@ -19,7 +20,7 @@ export const DateInput = ({ handleInputChange }) => {
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker name="fecha" onChange={handleChange} />
+            <DatePicker name="fecha" onChange={handleChange} value={dayjs(formValues.fecha)} />
         </LocalizationProvider>)
 }
 

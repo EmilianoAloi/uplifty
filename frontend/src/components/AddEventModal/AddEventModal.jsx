@@ -2,13 +2,13 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Stack, Button, Fab } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { DateInput } from '../DateInput/DateInput';
 import PriceInput from '../PriceInput/PriceInput';
-import { addEvent } from '../../api/events.api';
+import { addEvent, getEvent } from '../../api/events.api';
 import ButtonsArea from '../ButtonsArea/ButtonsArea';
 
 const AddEventModal = () => {
@@ -26,10 +26,7 @@ const AddEventModal = () => {
     };
 
     const params = useParams()
-
-
     const [open, setOpen] = useState(true);
-
     const [formValues, setFormValues] = useState({
         titulo: '',
         descripcion: '',
@@ -47,7 +44,6 @@ const AddEventModal = () => {
     };
 
 
-
     const handleFormSubmit = async () => {
         try {
             console.log('Formulario enviado:', formValues);
@@ -58,23 +54,36 @@ const AddEventModal = () => {
         }
     };
 
-    return (
 
+    useEffect(() => {
+
+        async function eventData() {
+
+            if (params.id) {
+                const res = await getEvent(params.id);
+                console.log(res.data)
+                setFormValues(res.data)
+            }
+        };
+
+        eventData();
+    }, []);
+
+
+    return (
 
         <>
             <Modal open={open} >
                 <Box sx={style}>
-
                     <Stack direction="row" sx={{ justifyContent: "space-between" }}>
-                    {params.id ? (
-                <Typography variant="h4" component="h2" >
-                    Modificar evento
-                </Typography>
-            ) :
-                (<Typography variant="h4" component="h2" >
-                    Crear evento
-                </Typography>)}
-
+                        {params.id ? (
+                            <Typography variant="h4" component="h2" >
+                                Modificar evento
+                            </Typography>
+                        ) :
+                            (<Typography variant="h4" component="h2" >
+                                Crear evento
+                            </Typography>)}
                         <Button
                             color='error'
                             component={Link} to={"/"}
@@ -108,6 +117,7 @@ const AddEventModal = () => {
                                     label="Ej: Evento Tech"
                                     variant="standard"
                                     name="titulo"
+                                    value={formValues.titulo}
                                     onChange={handleInputChange} />
                             </Stack>
 
@@ -117,6 +127,7 @@ const AddEventModal = () => {
                                 <TextField label="Descripción del evento"
                                     variant="filled"
                                     name="descripcion"
+                                    value={formValues.descripcion}
                                     multiline
                                     rows={5}
                                     onChange={handleInputChange}
@@ -134,22 +145,23 @@ const AddEventModal = () => {
                                 <TextField label="Ej: Centro Cultural Konex"
                                     variant="standard"
                                     name="ubicacion"
+                                    value={formValues.ubicacion}
                                     onChange={handleInputChange}
                                 />
                             </Stack>
 
                             <Stack>
                                 <Typography variant='h6'>Fecha del evento</Typography>
-                                <DateInput name="fecha" handleInputChange={handleInputChange} />
+                                <DateInput name="fecha" handleInputChange={handleInputChange} formValues={formValues} />
                             </Stack>
 
-                            <PriceInput handleInputChange={handleInputChange} />
+                            <PriceInput handleInputChange={handleInputChange} formValues={formValues} />
 
                         </Stack>
 
                     </Stack>
 
-                    <ButtonsArea handleFormSubmit={handleFormSubmit} setOpen={setOpen}  />
+                    <ButtonsArea handleFormSubmit={handleFormSubmit} setOpen={setOpen} formValues={formValues}/>
 
                 </Box>
 
