@@ -9,7 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { DateInput } from '../DateInput/DateInput';
 import PriceInput from '../PriceInput/PriceInput';
 import { addEvent } from '../../api/events.api';
-
+import ButtonsArea from '../ButtonsArea/ButtonsArea';
 
 const AddEventModal = () => {
     const style = {
@@ -44,16 +44,13 @@ const AddEventModal = () => {
         }));
     };
 
-    // const handleFormSubmit =  () => {
-    //     console.log('Formulario enviado:', formValues);
-    // };
 
 
     const handleFormSubmit = async () => {
         try {
             console.log('Formulario enviado:', formValues);
             await addEvent(formValues);
-            
+
             setOpen(false);
         } catch (error) {
             console.error('Error al enviar el formulario:', error);
@@ -146,17 +143,7 @@ const AddEventModal = () => {
 
                     </Stack>
 
-                    <Stack sx={{ width: "20rem", margin: "0 auto", marginTop: "3rem" }}>
-                        <Fab variant='contained' color='success' onClick={handleFormSubmit}
-                            sx={{
-                                width: "100%",
-                                fontSize: "1.4rem",
-                                fontWeight: "600",
-                                color: "white",
-                                borderRadius: "1rem"
-                            }}
-                        >CREAR EVENTO</Fab>
-                    </Stack>
+                        <ButtonsArea handleFormSubmit={handleFormSubmit} />
                 </Box>
 
             </Modal>

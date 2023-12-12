@@ -6,8 +6,7 @@ export const DateInput = ({ handleInputChange }) => {
 
 
     const handleChange = (date) => {
-        const dateString = date.format("DD-MM-YYYY");
-
+        const dateString = date.format("YYYY-MM-DD");
 
         handleInputChange({
             target: {

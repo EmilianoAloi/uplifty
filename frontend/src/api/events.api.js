@@ -12,3 +12,4 @@ export const getAllEvents = () => {
 export const addEvent = (formValues) => {
    return eventsApi.post("/", formValues);
 };
+

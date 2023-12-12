@@ -31,7 +31,6 @@ const AddEventModal = () => {
     };
 
     const [open, setOpen] = useState(true);
-
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
@@ -56,8 +55,6 @@ const AddEventModal = () => {
     return (
 
         <>
-
-
             <Modal
                 open={open}
             // onClose={handleClose}
@@ -76,7 +73,6 @@ const AddEventModal = () => {
                             top: 10,
                             right: 10,
                             borderRadius: 1
-
                         }} >
                         <CloseIcon sx={{}} />
                     </Button>
@@ -96,26 +92,6 @@ const AddEventModal = () => {
                             ))}
                         </Grid>
                     </Box>
-
-
-
-
-
-                    {/* 
-                    <Stack>
-
-                        <Stack sx={{ flexDirection: "column", justifyContent: 'center', maxWidth: "100%", gap: 1 }}>
-                            {events.map(evento => (
-                                <EventCard key={evento.id} evento={evento} />
-                            ))}
-                        </Stack>
-
-
-                    </Stack> */}
-
-
-
-
 
 
                 </Box>

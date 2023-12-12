@@ -31,6 +31,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/addevent' element={<AddEventModal />} />
             <Route path='/showevents' element={<EventsModal />} />
+            <Route path='/event/:id' element={<AddEventModal />} />
+
 
 
           </Routes>
