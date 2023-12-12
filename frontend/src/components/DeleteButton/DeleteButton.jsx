@@ -6,10 +6,10 @@ const DeleteButton = () => {
 
     <>
 
-      <Fab variant='contained' color='error' onClick
+      <Fab variant='contained' color='error' 
         sx={{
           width: "100%",
-          fontSize: "1.4rem",
+          fontSize: "1.2rem",
           fontWeight: "600",
           color: "white",
           borderRadius: "1rem"

@@ -5,7 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddEventModal from './components/AddEventModal/AddEventModal';
 import EventsModal from "./components/EventsModal/EventsModal"
-// import fondo from "./assets/images/fondo.jpg"
+
+
 
 function App() {
 

@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Stack, Button, Fab } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { DateInput } from '../DateInput/DateInput';
@@ -24,6 +24,8 @@ const AddEventModal = () => {
         boxShadow: 24,
         p: 4,
     };
+
+    const params = useParams()
 
 
     const [open, setOpen] = useState(true);
@@ -65,9 +67,14 @@ const AddEventModal = () => {
                 <Box sx={style}>
 
                     <Stack direction="row" sx={{ justifyContent: "space-between" }}>
-                        <Typography variant="h4" component="h2" >
-                            Crear evento
-                        </Typography>
+                    {params.id ? (
+                <Typography variant="h4" component="h2" >
+                    Modificar evento
+                </Typography>
+            ) :
+                (<Typography variant="h4" component="h2" >
+                    Crear evento
+                </Typography>)}
 
                         <Button
                             color='error'
@@ -143,7 +150,8 @@ const AddEventModal = () => {
 
                     </Stack>
 
-                        <ButtonsArea handleFormSubmit={handleFormSubmit} />
+                    <ButtonsArea handleFormSubmit={handleFormSubmit} />
+
                 </Box>
 
             </Modal>
