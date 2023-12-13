@@ -28,6 +28,10 @@ Este proyecto es una aplicación web para la gestión de eventos. Permite a los 
 
 ## Tecnologías Utilizadas
 
+### Diseño
+
+- FIGMA: Herramienta de diseño de interfaz de usuario.
+
 ### Backend
 - Django: Framework de desarrollo web en Python.
 - Django REST Framework: Biblioteca para construir APIs web.

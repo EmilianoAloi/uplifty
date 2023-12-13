@@ -5,18 +5,12 @@ import dayjs from 'dayjs';
 
 export const DateInput = ({ handleInputChange, formValues }) => {
 
-
     const handleChange = (date) => {
         const dateString = date.format("YYYY-MM-DD");
-
         handleInputChange({
-            target: {
-                name: "fecha",
-                value: dateString,
-            },
+            target: { name: "fecha", value: dateString, }
         });
     };
-
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>

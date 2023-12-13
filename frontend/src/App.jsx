@@ -8,7 +8,6 @@ import EventsModal from "./components/EventsModal/EventsModal"
 
 
 function App() {
-
   const theme = createTheme({
     palette: {
       secondary: {

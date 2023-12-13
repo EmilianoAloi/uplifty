@@ -43,53 +43,39 @@ const AddEventModal = () => {
     }, []);
 
     return (
-        <>
-            <Modal open={open} >
-                <Box sx={style} className="eventsModal" >
-                    <Typography variant="h4" component="h2" sx={{mb:3, fontWeight:600}} >
-                        EVENTOS
-                    </Typography>
 
-                    <Button
-                        color='error'
-                        component={Link} to={"/"}
-                        variant='text'
-                        sx={{
-                            position: 'absolute',
-                            top: 10,
-                            right: 10,
-                            borderRadius: 1
-                        }} >
-                        <CloseIcon sx={{}} />
-                    </Button>
-
-
-
-                    <Box sx={{
-                        width: '100%',
-                        maxHeight: 'calc(95% - 1px)',
-                        overflowY: 'auto',
-                    }}>
-                        <Grid container rowSpacing={1} columnSpacing={3}>
-                            {events.map((evento) => (
-                                <Grid item key={evento.id} xs={12} md={6}>
-                                    <EventCard evento={evento} />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </Box>
-
-
+        <Modal open={open} >
+            <Box sx={style} className="eventsModal" >
+                <Typography variant="h4" component="h2" sx={{ mb: 3, fontWeight: 600 }} >
+                    EVENTOS
+                </Typography>
+                <Button
+                    color='error'
+                    component={Link} to={"/"}
+                    variant='text'
+                    sx={{
+                        position: 'absolute',
+                        top: 10,
+                        right: 10,
+                        borderRadius: 1
+                    }} >
+                    <CloseIcon sx={{}} />
+                </Button>
+                <Box sx={{
+                    width: '100%',
+                    maxHeight: 'calc(95% - 1px)',
+                    overflowY: 'auto',
+                }}>
+                    <Grid container rowSpacing={1} columnSpacing={3}>
+                        {events.map((evento) => (
+                            <Grid item key={evento.id} xs={12} md={6}>
+                                <EventCard evento={evento} />
+                            </Grid>
+                        ))}
+                    </Grid>
                 </Box>
-            </Modal>
-
-
-
-        </>
-
-
-
-
+            </Box>
+        </Modal>
     )
 }
 

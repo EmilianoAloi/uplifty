@@ -6,11 +6,6 @@ import React from 'react'
 const Home = () => {
     return (
         <Stack component="section" className="home">
-
-          
-            
-
-
         </Stack>
     )
 }

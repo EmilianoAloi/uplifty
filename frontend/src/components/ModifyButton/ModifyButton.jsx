@@ -2,21 +2,16 @@ import { Fab } from '@mui/material';
 import { updateEvent } from '../../api/events.api';
 import { useNavigate } from 'react-router-dom';
 
-const ModifyButton = ({ params, setOpen, formValues, setOpenToastUpdate }) => {
+const ModifyButton = ({ params, formValues, setOpenToastUpdate }) => {
 
     const navigate = useNavigate()
     const handleClick = () => {
         updateEvent(params.id, formValues);
         setOpenToastUpdate(true)
-        // setOpen(false);
-
         setTimeout(() => {
             navigate("/showevents");
         }, 2000);
-
     };
-
-
 
     return (
         <><Fab variant='contained' color='warning' onClick={handleClick}
@@ -29,7 +24,6 @@ const ModifyButton = ({ params, setOpen, formValues, setOpenToastUpdate }) => {
             }}
         >MODIFICAR EVENTO</Fab>
         </>
-
     )
 }
 
