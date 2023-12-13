@@ -1,11 +1,18 @@
 import { Fab } from '@mui/material';
 import { updateEvent } from '../../api/events.api';
+import { useNavigate } from 'react-router-dom';
 
-const ModifyButton = ({ params, setOpen, formValues }) => {
+const ModifyButton = ({ params, setOpen, formValues, setOpenToastUpdate }) => {
 
+    const navigate = useNavigate()
     const handleClick = () => {
         updateEvent(params.id, formValues);
-        setOpen(false);
+        setOpenToastUpdate(true)
+        // setOpen(false);
+
+        setTimeout(() => {
+            navigate("/showevents");
+        }, 2000);
 
     };
 

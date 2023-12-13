@@ -1,16 +1,23 @@
 import "./AddEventModal.css"
+import * as React from 'react';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Stack, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { DateInput } from '../DateInput/DateInput';
 import PriceInput from '../PriceInput/PriceInput';
 import { addEvent, getEvent } from '../../api/events.api';
 import ButtonsArea from '../ButtonsArea/ButtonsArea';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const AddEventModal = () => {
     const style = {
@@ -24,10 +31,19 @@ const AddEventModal = () => {
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
-        };
+    };
 
+
+    const navigate = useNavigate();
     const params = useParams()
     const [open, setOpen] = useState(true);
+    const [openToastError, setOpenToastError] = useState(false);
+    const [openToastOk, setOpenToastOk] = useState(false);
+    const [openToastUpdate, setOpenToastUpdate] = useState(false);
+    const [openToastDel, setOpenToastDel] = useState(false);
+
+
+
     const [formValues, setFormValues] = useState({
         titulo: '',
         descripcion: '',
@@ -35,6 +51,7 @@ const AddEventModal = () => {
         fecha: '',
         ubicacion: '',
     });
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -44,12 +61,27 @@ const AddEventModal = () => {
         }));
     };
 
+    const handleCloseToast = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenToastError(false);
+        setOpenToastOk(false);
+        setOpenToastUpdate(false);
+        setOpenToastDel(false);
+
+    };
 
     const handleFormSubmit = async () => {
         try {
-            console.log('Formulario enviado:', formValues);
-            await addEvent(formValues);
-            setOpen(false);
+
+            if (formValues.titulo && formValues.descripcion && formValues.ubicacion && formValues.fecha && formValues.precio !== "") {
+                setOpenToastOk(true)
+                await addEvent(formValues);
+                
+            } else {
+                setOpenToastError(true)
+            }
         } catch (error) {
             console.error('Error al enviar el formulario:', error);
         }
@@ -74,7 +106,10 @@ const AddEventModal = () => {
     return (
 
         <>
+
+
             <Modal open={open} >
+
                 <Stack sx={style}  >
                     <Stack direction="row" sx={{ justifyContent: "space-between" }}>
                         {params.id ? (
@@ -162,12 +197,42 @@ const AddEventModal = () => {
 
                     </Stack>
 
-                    <ButtonsArea handleFormSubmit={handleFormSubmit} setOpen={setOpen} formValues={formValues} />
+                    <ButtonsArea
+                        handleFormSubmit={handleFormSubmit}
+                        setOpen={setOpen}
+                        formValues={formValues}
+                        setOpenToastUpdate={setOpenToastUpdate}
+                        setOpenToastError={setOpenToastError}
+                        setOpenToastDel={setOpenToastDel}
+                    />
 
                 </Stack>
 
             </Modal>
 
+            <Snackbar open={openToastError} autoHideDuration={6000} onClose={handleCloseToast}>
+                <Alert onClose={handleCloseToast} severity="error" sx={{ width: '100%' }}>
+                    Faltan llenar campos del formulario!
+                </Alert>
+            </Snackbar>
+
+            <Snackbar open={openToastUpdate} autoHideDuration={6000} onClose={handleCloseToast}>
+                <Alert onClose={handleCloseToast} severity="warning" sx={{ width: '100%' }}>
+                    Evento modificado con exito!
+                </Alert>
+            </Snackbar>
+
+            <Snackbar open={openToastOk} autoHideDuration={6000} onClose={handleCloseToast}>
+                <Alert onClose={handleCloseToast} severity="success" sx={{ width: '100%' }}>
+                    Evento creado con exito!
+                </Alert>
+            </Snackbar>
+
+            <Snackbar open={openToastDel} autoHideDuration={6000} onClose={handleCloseToast}>
+                <Alert onClose={handleCloseToast} severity="error" sx={{ width: '100%' }}>
+                    Evento eliminado con exito!
+                </Alert>
+            </Snackbar>
 
 
 
