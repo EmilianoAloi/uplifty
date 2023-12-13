@@ -1,7 +1,9 @@
+import './EventsModal.css';
+
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Button, Stack } from '@mui/material';
+import { Button } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
@@ -10,8 +12,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import { getAllEvents } from '../../api/events.api';
 import EventCard from '../EventCard/EventCard';
 
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 const AddEventModal = () => {
@@ -22,14 +22,15 @@ const AddEventModal = () => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: "95%",
-        height: '90%',
+        width: "70rem",
+        height: '42rem',
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
     };
 
+    // eslint-disable-next-line
     const [open, setOpen] = useState(true);
     const [events, setEvents] = useState([]);
 
@@ -41,27 +42,12 @@ const AddEventModal = () => {
         loadEvents();
     }, []);
 
-
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
-
-
-
     return (
-
         <>
-            <Modal
-                open={open}
-            // onClose={handleClose}
-            >
-                <Box sx={style}>
-                    <Typography variant="h4" component="h2" >
-                        Eventos
+            <Modal open={open} >
+                <Box sx={style} className="eventsModal" >
+                    <Typography variant="h4" component="h2" sx={{mb:3, fontWeight:600}} >
+                        EVENTOS
                     </Typography>
 
                     <Button
@@ -81,7 +67,7 @@ const AddEventModal = () => {
 
                     <Box sx={{
                         width: '100%',
-                        maxHeight: 'calc(95% - 1px)', 
+                        maxHeight: 'calc(95% - 1px)',
                         overflowY: 'auto',
                     }}>
                         <Grid container rowSpacing={1} columnSpacing={3}>

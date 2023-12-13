@@ -1,10 +1,11 @@
-import Box from '@mui/material/Box';
+import "./AddEventModal.css"
+
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Stack, Button, Fab } from '@mui/material';
+import { Stack, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { DateInput } from '../DateInput/DateInput';
 import PriceInput from '../PriceInput/PriceInput';
@@ -17,13 +18,13 @@ const AddEventModal = () => {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: "60%",
-        height: '80%',
+        width: "55rem",
+        height: '35rem',
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
-    };
+        };
 
     const params = useParams()
     const [open, setOpen] = useState(true);
@@ -67,14 +68,14 @@ const AddEventModal = () => {
         };
 
         eventData();
-    }, []);
+    }, [params.id]);
 
 
     return (
 
         <>
             <Modal open={open} >
-                <Box sx={style}>
+                <Stack sx={style}  >
                     <Stack direction="row" sx={{ justifyContent: "space-between" }}>
                         {params.id ? (
                             <Typography variant="h4" component="h2" >
@@ -161,9 +162,9 @@ const AddEventModal = () => {
 
                     </Stack>
 
-                    <ButtonsArea handleFormSubmit={handleFormSubmit} setOpen={setOpen} formValues={formValues}/>
+                    <ButtonsArea handleFormSubmit={handleFormSubmit} setOpen={setOpen} formValues={formValues} />
 
-                </Box>
+                </Stack>
 
             </Modal>
 
