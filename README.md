@@ -1,4 +1,4 @@
-#  Desafio BlackNexus
+#  Uplifty
 
 Este proyecto es una aplicación web para la gestión de eventos. Permite a los usuarios crear, modificar, eliminar y visualizar eventos. La aplicación está construida con Django para el backend y React para el frontend.
 
